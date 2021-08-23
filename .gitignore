@@ -1,0 +1,4 @@
+**/wsl_test
+.idea
+.vscode/
+__pycache__/
