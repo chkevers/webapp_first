@@ -1,13 +1,27 @@
+# import sys
+# print(sys.executable)
+# import site
+# print(site.getsitepackages())
+
+
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
+app.config=['SQLALCHEMY_DATABASE_URI']='sqlite:///posts.db'
+db = SQLAlchemy(app)
+
+
+class BlogPost(db.Model):
+
+
 
 all_posts = [
     {
         "title": "Post1",
         "content": "Content of post 1.",
-        "author": "ChrisK"
+        "author": "Stevyy"
         
     },
     {
@@ -35,6 +49,7 @@ def posts():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
 
