@@ -26,20 +26,6 @@ class BlogPost(db.Model):
         return 'Blog post' + str(self.id)
 
 
-# all_posts = [
-#     {
-#         "title": "Post1",
-#         "content": "Content of post 1.",
-#         "author": "Stevyy"
-        
-#     },
-#     {
-#         "title": "Post2",
-#         "content": "Content of post 2."
-        
-#     }
-# ]
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -75,6 +61,17 @@ def delete(id):
     db.session.commit()
     return redirect('/posts')
 
+@app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    post=BlogPost.query.get_or_404(id)
+    if request.method=='POST':
+        post.title=request.form['title']
+        post.author=request.form['author']
+        post.content=request.form['content']
+        db.session.commit()
+        return redirect('/posts')
+    else:
+        return render_template('edit.html', post=post)
     
 if __name__ == "__main__":
     app.run(debug=True)
