@@ -11,11 +11,11 @@
 <hr>
 <h2>Editing Blog Post:</h2>
     <form action='/posts/edit/{{post.id}}' method='POST'>
-        Title: <input type='text' name='title' id='title' value={{post.title}}>
+        Title: <input type='text' name='title' id='title' value="{{post.title}}">
         <br>
-        Post: <input type='text' name='content' id='content' value={{post.content}}>
+        Post: <input type='text' name='content' id='content' value="{{post.content}}">
         <br>
-        Author: <input type="text" name="author" id="author" value={{post.author}}>
+        Author: <input type="text" name="author" id="author" value="{{post.author}}">
         <hr>
         <input type='submit' value='Save'>
     </form>
