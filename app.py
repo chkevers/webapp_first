@@ -7,11 +7,18 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///posts.db'
-db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///posts.db'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Kokomo007&'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_DB'] = 'localflask'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
+# db = SQLAlchemy(app)
+db = MySQL(app)
 
 
 class BlogPost(db.Model):
