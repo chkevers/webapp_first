@@ -6,39 +6,39 @@
 
 
 {% block body %}
+<br>
  <h1>Home Page for posts and that works fine!</h1>
 
 <hr>
-<h2>Create New Blog Post:</h2>
-    <form action='/posts' method='POST'>
-        Title: <input type='text' name='title' id='title'>
-        <br>
-        Post: <input type='text' name='content' id='content'>
-        <br>
-        Author: <input type="text" name="author" id="author">
-        <input type='submit' value='Post'>
-    </form>
+<div>
+<h2 style="display: inline;">All posts board</h2>
+<a style="display: inline;" href="/posts/new" class="btn btn-success float-end">+ New Post</a>
+</div>
 <hr>
 
     {% for post in posts %}
 
-     <h2>{{ post.title }}</h2>
+    <h2>{{ post.title }}</h2>
 
     {% if post.author %}
 
-     <h3>By: {{ post.author }}</h3>
+     <small> Written by {{ post.author }} on {{post.date_posted}}</small>
+     <br>
 
     {% else %}
 
-     <h3>Author unknown</h3>
+    <small> Written by Unknown on {{post.date_posted}}</small>
+    <br>
 
     {% endif %}
+     <br>
+     <p style="white-space: pre-wrap;">{{ post.content }}</p>
 
-     <p>{{ post.content }}</p>
-
-     <a href="/posts/delete/{{ post.id }}">Delete</a>
-     <a href="/posts/edit/{{ post.id }}">Edit</a>
-
+     <a class="btn btn-danger" href="/posts/delete/{{ post.id }}">Delete</a>
+     <a class="btn btn-warning" href="/posts/edit/{{ post.id }}">Edit</a>
+     <br>
+     <br>
+     <hr>
     {% endfor %}
 
 {% endblock %}
